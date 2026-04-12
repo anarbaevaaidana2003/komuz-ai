@@ -1,0 +1,47 @@
+.gen-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gen-form__examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gen-form__example {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: color 0.2s var(--easing), border-color 0.2s var(--easing), background 0.2s var(--easing);
+  text-align: left;
+}
+
+.gen-form__example:hover {
+  color: var(--accent-blue-dark);
+  border-color: var(--primary);
+  background: #FDF8E8;
+}
+
+.gen-form__public-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.gen-form__public-toggle input[type='checkbox'] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}

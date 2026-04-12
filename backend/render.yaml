@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: komuz-ai-backend
+    env: python
+    region: frankfurt
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: komuz-ai-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: USE_MOCK_AI
+        value: "false"
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: HF_SPACE_URL
+        sync: false
+
+databases:
+  - name: komuz-ai-db
+    databaseName: komuz_ai
+    plan: free

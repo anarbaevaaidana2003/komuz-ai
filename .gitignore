@@ -1,0 +1,54 @@
+# ===== Python / Backend =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables — НИКОГДА не коммитить!
+.env
+*.env.local
+
+# SQLite dev database
+*.db
+*.sqlite3
+
+# Audio files (local mock mode)
+backend/audio_files/
+
+# Alembic
+# (versions/ — коммитим, остальное нет)
+
+# ===== Node / Frontend =====
+node_modules/
+frontend/node_modules/
+frontend/.env.local
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== IDE =====
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== Logs =====
+*.log
+logs/
