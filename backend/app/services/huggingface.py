@@ -20,10 +20,10 @@ async def generate_music(prompt: str, duration: int) -> bytes:
 
     logger.info("HF Spaces: requesting %ds generation for prompt: %r", duration, prompt)
     try:
-        async with httpx.AsyncClient(timeout=120) as client:
+        async with httpx.AsyncClient(timeout=180) as client:
             response = await client.post(
-                f"{settings.HF_SPACE_URL}/api/predict",
-                json={"data": [prompt, duration]},
+                f"{settings.HF_SPACE_URL}/generate",
+                json={"prompt": prompt, "duration": duration},
             )
             response.raise_for_status()
         return response.content
