@@ -18,17 +18,28 @@ async def generate_music(prompt: str, duration: int) -> bytes:
         logger.info("Mock mode: generating %ds wav for prompt: %r", duration, prompt)
         return _generate_mock_wav(duration)
 
-    logger.info("HF Spaces: requesting %ds generation for prompt: %r", duration, prompt)
+    url = f"{settings.HF_SPACE_URL}/generate"
+    logger.info("HF Spaces: POST %s  prompt=%r duration=%d", url, prompt, duration)
     try:
-        async with httpx.AsyncClient(timeout=180) as client:
+        async with httpx.AsyncClient(timeout=300) as client:
             response = await client.post(
-                f"{settings.HF_SPACE_URL}/generate",
+                url,
                 json={"prompt": prompt, "duration": duration},
             )
+            logger.info("HF Spaces response: status=%d size=%d", response.status_code, len(response.content))
             response.raise_for_status()
         return response.content
+    except httpx.TimeoutException as exc:
+        logger.error("HF Spaces TIMEOUT after 300s: %s", exc)
+        raise
+    except httpx.ConnectError as exc:
+        logger.error("HF Spaces CONNECT ERROR (space sleeping or wrong URL?): %s", exc)
+        raise
+    except httpx.HTTPStatusError as exc:
+        logger.error("HF Spaces HTTP %d: %s", exc.response.status_code, exc.response.text[:500])
+        raise
     except httpx.HTTPError as exc:
-        logger.error("HF Spaces request failed: %s", exc)
+        logger.error("HF Spaces request failed: %s %s", type(exc).__name__, exc)
         raise
 
 
