@@ -11,8 +11,8 @@ class GenerationCreate(BaseModel):
     @field_validator("duration")
     @classmethod
     def duration_range(cls, v: int) -> int:
-        if not 5 <= v <= 60:
-            raise ValueError("Duration must be between 5 and 60 seconds")
+        if not 5 <= v <= 25:
+            raise ValueError("Duration must be between 5 and 25 seconds")
         return v
 
     @field_validator("prompt")

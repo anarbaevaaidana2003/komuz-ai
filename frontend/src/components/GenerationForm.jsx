@@ -57,14 +57,14 @@ export default function GenerationForm({ onGenerate, loading }) {
           type="range"
           className="slider"
           min={5}
-          max={60}
+          max={25}
           step={5}
           value={duration}
           onChange={(e) => setDuration(Number(e.target.value))}
           disabled={loading}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-          <span>5с</span><span>30с</span><span>60с</span>
+          <span>5с</span><span>15с</span><span>25с</span>
         </div>
       </div>
 
