@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import usePlayerStore from '../store/playerStore'
+import { usePlaylists } from '../hooks/usePlaylists'
+import useAuthStore from '../store/authStore'
 import './GenerationCard.css'
 
 function formatDate(iso) {
@@ -7,6 +10,11 @@ function formatDate(iso) {
 
 export default function GenerationCard({ generation, onDelete, showDelete = false }) {
   const { play, addToQueue, currentTrack, isPlaying } = usePlayerStore()
+  const { isAuthenticated } = useAuthStore()
+  const { playlists, addToPlaylist } = usePlaylists()
+  const [showPlaylists, setShowPlaylists] = useState(false)
+  const [added, setAdded] = useState(false)
+
   const isCurrentTrack = currentTrack?.id === generation.id
   const canPlay = generation.status === 'done' && generation.audio_url
 
@@ -14,6 +22,17 @@ export default function GenerationCard({ generation, onDelete, showDelete = fals
     if (!canPlay) return
     addToQueue(generation)
     play(generation)
+  }
+
+  async function handleAddToPlaylist(playlistId) {
+    try {
+      await addToPlaylist(playlistId, generation.id)
+      setAdded(true)
+      setShowPlaylists(false)
+      setTimeout(() => setAdded(false), 2000)
+    } catch {
+      // already in playlist or other error — ignore
+    }
   }
 
   return (
@@ -45,6 +64,35 @@ export default function GenerationCard({ generation, onDelete, showDelete = fals
         >
           {isCurrentTrack && isPlaying ? '⏸ Токтотуу' : '▶ Угуу'}
         </button>
+
+        {isAuthenticated && canPlay && (
+          <div style={{ position: 'relative' }}>
+            <button
+              className="btn btn-sm btn-outline"
+              onClick={() => setShowPlaylists((v) => !v)}
+            >
+              {added ? '✓ Кошулду' : '+ Плейлист'}
+            </button>
+
+            {showPlaylists && (
+              <div className="playlist-dropdown">
+                {playlists.length === 0 ? (
+                  <div className="playlist-dropdown__empty">Плейлист жок</div>
+                ) : (
+                  playlists.map((p) => (
+                    <button
+                      key={p.id}
+                      className="playlist-dropdown__item"
+                      onClick={() => handleAddToPlaylist(p.id)}
+                    >
+                      ♫ {p.name}
+                    </button>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
+        )}
 
         {showDelete && (
           <button className="btn btn-sm btn-danger" onClick={() => onDelete?.(generation.id)}>

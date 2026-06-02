@@ -58,4 +58,47 @@
 .gen-card__actions {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
+}
+
+.playlist-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 100;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 180px;
+  overflow: hidden;
+}
+
+.playlist-dropdown__item {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.playlist-dropdown__item:last-child {
+  border-bottom: none;
+}
+
+.playlist-dropdown__item:hover {
+  background: rgba(212, 160, 23, 0.08);
+  color: var(--primary);
+}
+
+.playlist-dropdown__empty {
+  padding: 12px 14px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
 }
