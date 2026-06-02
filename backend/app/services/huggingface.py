@@ -9,6 +9,18 @@ from app.core.config import settings
 logger = logging.getLogger(__name__)
 
 
+def _translate_to_english(text: str) -> str:
+    """Translate prompt to English using Google Translate (silent fallback on error)."""
+    try:
+        from deep_translator import GoogleTranslator
+        translated = GoogleTranslator(source="auto", target="en").translate(text)
+        logger.info("Translated prompt: %r → %r", text, translated)
+        return translated
+    except Exception as exc:
+        logger.warning("Translation skipped (%s: %s), using original", type(exc).__name__, exc)
+        return text
+
+
 async def generate_music(prompt: str, duration: int) -> bytes:
     """
     Если USE_MOCK_AI=true — возвращает синтетический .wav (sine wave).
@@ -18,6 +30,7 @@ async def generate_music(prompt: str, duration: int) -> bytes:
         logger.info("Mock mode: generating %ds wav for prompt: %r", duration, prompt)
         return _generate_mock_wav(duration)
 
+    prompt = _translate_to_english(prompt)
     prompt = f"{prompt}, folk music, ethnic string instrument, slow tempo, no drums, no bass"
     url = f"{settings.HF_SPACE_URL}/generate"
     logger.info("HF Spaces: POST %s  prompt=%r duration=%d", url, prompt, duration)

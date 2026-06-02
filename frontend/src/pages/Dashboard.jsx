@@ -11,19 +11,19 @@ export default function Dashboard() {
     <main className="page">
       <div className="container">
         <header style={{ marginBottom: 40 }}>
-          <h1>Мои треки</h1>
+          <h1>Менин тректерим</h1>
           <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>
-            Всего генераций: <strong>{generations.length}</strong>
+            Жалпы жаратуулар: <strong>{generations.length}</strong>
             {user && ` · ${user.username}`}
           </p>
         </header>
 
         {loading && generations.length === 0 ? (
-          <LoadingWave text="Загружаем ваши треки..." />
+          <LoadingWave text="Тректериңиз жүктөлүүдө..." />
         ) : generations.length === 0 ? (
           <div className="empty-state">
-            <h3>Ещё нет генераций</h3>
-            <p>Перейдите на страницу &laquo;Создать&raquo;, чтобы создать первую мелодию</p>
+            <h3>Азырынча жаратуулар жок</h3>
+            <p>Биринчи обонду түзүү үчүн «Түзүү» бетине өтүңүз</p>
           </div>
         ) : (
           <div className="grid-3">

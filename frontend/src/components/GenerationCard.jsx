@@ -2,7 +2,7 @@ import usePlayerStore from '../store/playerStore'
 import './GenerationCard.css'
 
 function formatDate(iso) {
-  return new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
+  return new Date(iso).toLocaleDateString('ky-KG', { day: 'numeric', month: 'short', year: 'numeric' })
 }
 
 export default function GenerationCard({ generation, onDelete, showDelete = false }) {
@@ -20,7 +20,7 @@ export default function GenerationCard({ generation, onDelete, showDelete = fals
     <div className={`gen-card ${isCurrentTrack ? 'gen-card--active' : ''}`}>
       <div className="gen-card__header">
         <span className={`badge badge-${generation.status}`}>{generation.status}</span>
-        {generation.is_public && <span className="gen-card__public">публичный</span>}
+        {generation.is_public && <span className="gen-card__public">жалпыга жеткиликтүү</span>}
       </div>
 
       <p className="gen-card__prompt">&ldquo;{generation.prompt}&rdquo;</p>
@@ -43,12 +43,12 @@ export default function GenerationCard({ generation, onDelete, showDelete = fals
           onClick={handlePlay}
           disabled={!canPlay}
         >
-          {isCurrentTrack && isPlaying ? '⏸ Пауза' : '▶ Слушать'}
+          {isCurrentTrack && isPlaying ? '⏸ Токтотуу' : '▶ Угуу'}
         </button>
 
         {showDelete && (
           <button className="btn btn-sm btn-danger" onClick={() => onDelete?.(generation.id)}>
-            Удалить
+            Өчүрүү
           </button>
         )}
       </div>

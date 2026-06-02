@@ -20,7 +20,7 @@ export default function Playlists() {
       setDescription('')
       setShowForm(false)
     } catch (err) {
-      alert(err.response?.data?.detail || 'Ошибка создания')
+      alert(err.response?.data?.detail || 'Түзүү катасы')
     } finally {
       setCreating(false)
     }
@@ -31,50 +31,50 @@ export default function Playlists() {
       <div className="container">
         <header style={{ marginBottom: 40, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            <h1>Мои плейлисты</h1>
-            <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>Создавайте коллекции мелодий</p>
+            <h1>Менин плейлисттерим</h1>
+            <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>Обондор коллекциясын түзүңүз</p>
           </div>
           <button className="btn btn-primary" onClick={() => setShowForm(!showForm)}>
-            {showForm ? 'Отмена' : '+ Новый плейлист'}
+            {showForm ? 'Жокко чыгаруу' : '+ Жаңы плейлист'}
           </button>
         </header>
 
         {showForm && (
           <div className="card" style={{ marginBottom: 32, maxWidth: 480 }}>
-            <h3 style={{ marginBottom: 20 }}>Новый плейлист</h3>
+            <h3 style={{ marginBottom: 20 }}>Жаңы плейлист</h3>
             <form onSubmit={handleCreate} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div className="form-group">
-                <label className="form-label">Название</label>
+                <label className="form-label">Аты</label>
                 <input
                   className="form-input"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="Мои любимые мелодии"
+                  placeholder="Менин сүйүктүү обондорум"
                   required
                 />
               </div>
               <div className="form-group">
-                <label className="form-label">Описание (необязательно)</label>
+                <label className="form-label">Сүрөттөмө (милдеттүү эмес)</label>
                 <input
                   className="form-input"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Краткое описание"
+                  placeholder="Кыскача сүрөттөмө"
                 />
               </div>
               <button type="submit" className="btn btn-primary" disabled={creating}>
-                {creating ? 'Создание...' : 'Создать'}
+                {creating ? 'Түзүлүүдө...' : 'Түзүү'}
               </button>
             </form>
           </div>
         )}
 
         {loading && playlists.length === 0 ? (
-          <LoadingWave text="Загружаем плейлисты..." />
+          <LoadingWave text="Плейлисттер жүктөлүүдө..." />
         ) : playlists.length === 0 ? (
           <div className="empty-state">
-            <h3>Нет плейлистов</h3>
-            <p>Создайте первый плейлист для организации ваших мелодий</p>
+            <h3>Плейлисттер жок</h3>
+            <p>Обондорду уюштуруу үчүн биринчи плейлист түзүңүз</p>
           </div>
         ) : (
           <div className="grid-3">

@@ -15,7 +15,7 @@ export default function Generate() {
       const gen = await createGeneration(prompt, duration, isPublic)
       setLastCreated(gen)
     } catch (err) {
-      alert(err.response?.data?.detail || 'Ошибка генерации')
+      alert(err.response?.data?.detail || 'Жаратуу катасы')
     } finally {
       setSubmitting(false)
     }
@@ -27,9 +27,9 @@ export default function Generate() {
     <main className="page">
       <div className="container">
         <header style={{ marginBottom: 40 }}>
-          <h1>Создать мелодию</h1>
+          <h1>Обон түзүү</h1>
           <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>
-            Опишите желаемую мелодию — AI создаст уникальный наигрыш на комузе
+            Каалаган обонду сүрөттөңүз — AI комузда уникалдуу обон жаратат
           </p>
         </header>
 
@@ -41,14 +41,14 @@ export default function Generate() {
           <div>
             {lastCreated && (
               <div style={{ marginBottom: 24 }}>
-                <h3 style={{ marginBottom: 12, color: 'var(--accent-gold)' }}>Только что создано</h3>
+                <h3 style={{ marginBottom: 12, color: 'var(--accent-gold)' }}>Жаңы эле түзүлдү</h3>
                 <GenerationCard generation={lastCreated} />
               </div>
             )}
 
             {recentGenerations.length > 0 && (
               <div>
-                <h3 style={{ marginBottom: 12 }}>Последние генерации</h3>
+                <h3 style={{ marginBottom: 12 }}>Акыркы жаратуулар</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {recentGenerations.map((g) => (
                     <GenerationCard

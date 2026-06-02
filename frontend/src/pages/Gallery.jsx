@@ -32,16 +32,16 @@ export default function Gallery() {
         <header style={{ marginBottom: 40 }}>
           <h1>Галерея</h1>
           <p style={{ color: 'var(--text-muted)', marginTop: 8 }}>
-            Публичные мелодии сообщества — сортировка по популярности
+            Коомчулуктун жалпыга жеткиликтүү обондору — популярдуулук боюнча сорттолгон
           </p>
         </header>
 
         {loading ? (
-          <LoadingWave text="Загружаем галерею..." />
+          <LoadingWave text="Галерея жүктөлүүдө..." />
         ) : generations.length === 0 ? (
           <div className="empty-state">
-            <h3>Галерея пока пуста</h3>
-            <p>Создайте первую мелодию и опубликуйте её!</p>
+            <h3>Галерея азырынча бош</h3>
+            <p>Биринчи обонду түзүп, жарыялаңыз!</p>
           </div>
         ) : (
           <div className="grid-3">
@@ -54,7 +54,7 @@ export default function Gallery() {
                     style={{ marginTop: 8, width: '100%' }}
                     onClick={() => handleLike(g.id)}
                   >
-                    ♥ {g.likes_count} лайков
+                    ♥ {g.likes_count} лайк
                   </button>
                 )}
               </div>

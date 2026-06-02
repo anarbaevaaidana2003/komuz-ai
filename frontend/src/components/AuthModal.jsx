@@ -47,7 +47,7 @@ export default function AuthModal() {
   if (!isOpen) {
     return (
       <button className="auth-fab btn btn-primary" onClick={() => setIsOpen(true)}>
-        {isAuthenticated ? null : '↗ Войти'}
+        {isAuthenticated ? null : '↗ Кирүү'}
       </button>
     )
   }
@@ -55,10 +55,10 @@ export default function AuthModal() {
   return (
     <div className="modal-overlay" onClick={close}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={close} aria-label="Закрыть">✕</button>
+        <button className="modal-close" onClick={close} aria-label="Жабуу">✕</button>
 
         <h2 className="modal-title">
-          {tab === 'login' ? 'Добро пожаловать' : 'Регистрация'}
+          {tab === 'login' ? 'Кош келиңиз' : 'Катталуу'}
         </h2>
 
         <div className="modal-tabs">
@@ -66,13 +66,13 @@ export default function AuthModal() {
             className={`modal-tab ${tab === 'login' ? 'active' : ''}`}
             onClick={() => setTab('login')}
           >
-            Войти
+            Кирүү
           </button>
           <button
             className={`modal-tab ${tab === 'register' ? 'active' : ''}`}
             onClick={() => setTab('register')}
           >
-            Регистрация
+            Катталуу
           </button>
         </div>
 
@@ -92,7 +92,7 @@ export default function AuthModal() {
 
           {tab === 'register' && (
             <div className="form-group">
-              <label className="form-label">Имя пользователя</label>
+              <label className="form-label">Колдонуучу аты</label>
               <input
                 className="form-input"
                 type="text"
@@ -107,7 +107,7 @@ export default function AuthModal() {
           )}
 
           <div className="form-group">
-            <label className="form-label">Пароль</label>
+            <label className="form-label">Сырсөз</label>
             <input
               className="form-input"
               type="password"
@@ -123,7 +123,7 @@ export default function AuthModal() {
           {error && <p className="form-error">{error}</p>}
 
           <button type="submit" className="btn btn-primary" disabled={loading} style={{ width: '100%' }}>
-            {loading ? 'Загрузка...' : tab === 'login' ? 'Войти' : 'Создать аккаунт'}
+            {loading ? 'Жүктөлүүдө...' : tab === 'login' ? 'Кирүү' : 'Аккаунт түзүү'}
           </button>
         </form>
       </div>

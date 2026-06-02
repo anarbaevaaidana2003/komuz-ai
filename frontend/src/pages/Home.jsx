@@ -10,27 +10,27 @@ export default function Home() {
       {/* Hero */}
       <section className="hero">
         <div className="container hero__inner">
-          <div className="hero__badge">✦ Фаза 1 — Mock AI активна</div>
+          <div className="hero__badge">✦ Фаза 1 — Mock AI активдүү</div>
           <h1 className="hero__title">
-            Музыка комуза,<br />
-            <em>рождённая AI</em>
+            Комуздун музыкасы,<br />
+            <em>AI жараткан</em>
           </h1>
           <p className="hero__subtitle">
-            Создавайте мелодии в традиции нематериального культурного наследия Кыргызстана.
-            Опишите желаемое настроение — и AI сгенерирует уникальный наигрыш на комузе.
+            Кыргызстандын материалдык эмес маданий мурасынын салтында ыр обондорун түзүңүз.
+            Каалаган маанайыңызды сүрөттөңүз — AI комузда уникалдуу обон жаратат.
           </p>
           <div className="hero__actions">
             {isAuthenticated ? (
               <Link to="/generate" className="btn btn-primary btn-lg">
-                ✦ Создать мелодию
+                ✦ Обон түзүү
               </Link>
             ) : (
               <Link to="/" state={{ openAuth: true }} className="btn btn-primary btn-lg">
-                ✦ Начать — это бесплатно
+                ✦ Баштоо — бул бекер
               </Link>
             )}
             <Link to="/gallery" className="btn btn-outline-light btn-lg">
-              Послушать галерею
+              Галереяны угуу
             </Link>
           </div>
         </div>
@@ -68,22 +68,22 @@ export default function Home() {
       <section className="features">
         <div className="container">
           <div className="ornament">✦</div>
-          <h2 className="section-title">Как это работает</h2>
+          <h2 className="section-title">Бул кандайча иштейт</h2>
           <div className="features__grid">
             <div className="feature-card">
               <div className="feature-card__num">01</div>
-              <h3>Опишите мелодию</h3>
-              <p>Расскажите, какое настроение, темп или образ должна передавать музыка. На русском или кыргызском.</p>
+              <h3>Обонду сүрөттөңүз</h3>
+              <p>Музыканын кандай маанайда, темпте же образда болушун каалаганыңызды айтыңыз. Кыргызча же орусча.</p>
             </div>
             <div className="feature-card">
               <div className="feature-card__num">02</div>
-              <h3>AI генерирует</h3>
-              <p>Модель MusicGen, дообученная на записях комуза, создаёт уникальный аудиофайл за несколько секунд.</p>
+              <h3>AI жаратат</h3>
+              <p>Комуздун жазуулары менен үйрөтүлгөн MusicGen модели бир нече секундда уникалдуу аудиофайл жаратат.</p>
             </div>
             <div className="feature-card">
               <div className="feature-card__num">03</div>
-              <h3>Сохраняйте и делитесь</h3>
-              <p>Создавайте плейлисты, публикуйте треки в галерею, лайкайте лучшие работы сообщества.</p>
+              <h3>Сактаңыз жана бөлүшүңүз</h3>
+              <p>Плейлисттер түзүңүз, тректерди галереяга жарыялаңыз, коомчулуктун эң жакшы чыгармаларына лайк коюңуз.</p>
             </div>
           </div>
         </div>
@@ -94,15 +94,15 @@ export default function Home() {
         <div className="container">
           <div className="komuz-section__inner">
             <div className="komuz-section__text">
-              <h2>Комуз — душа Кыргызстана</h2>
+              <h2>Комуз — Кыргызстандын жаны</h2>
               <p>
-                Комуз — трёхструнный щипковый инструмент, один из древнейших в Центральной Азии.
-                Его звучание сопровождало эпические сказания манасчи и степные обряды на протяжении
-                тысячелетий. В 2019 году ЮНЕСКО включило искусство игры на комузе в список
-                нематериального культурного наследия человечества.
+                Комуз — Борбордук Азиядагы эң байыркы чертме аспаптардын бири, үч кылдуу аспап.
+                Анын үнү манасчылардын эпикалык жомоктору менен талаа салттарын миңдеген жылдар бою
+                коштоп келген. 2017-жылы ЮНЕСКО комузда ойноо өнөрүн материалдык эмес
+                маданий мурастардын тизмесине киргизген.
               </p>
               <Link to="/about" className="btn btn-outline" style={{ marginTop: 20, display: 'inline-flex' }}>
-                Узнать больше →
+                Көбүрөөк билүү →
               </Link>
             </div>
             <div className="komuz-section__visual" aria-hidden="true">

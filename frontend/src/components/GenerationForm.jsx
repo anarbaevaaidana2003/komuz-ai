@@ -2,10 +2,10 @@ import { useState } from 'react'
 import LoadingWave from './LoadingWave'
 
 const PROMPT_EXAMPLES = [
-  'Традиционная мелодия комуза в духе эпоса Манас',
-  'Медитативный наигрыш на комузе, вечерний степной ветер',
-  'Быстрая танцевальная мелодия, свадебное торжество',
-  'Печальная баллада пастуха в горах Тянь-Шань',
+  'Манас эпосунун рухундагы комуздун салттуу обону',
+  'Комуздагы медитативдик обон, кечки талаа шамалы',
+  'Тез бийлик обону, той маарекеси',
+  'Тянь-Шань тоолорундагы чабандын кайгылуу баллады',
 ]
 
 export default function GenerationForm({ onGenerate, loading }) {
@@ -23,13 +23,13 @@ export default function GenerationForm({ onGenerate, loading }) {
   return (
     <form className="gen-form" onSubmit={onSubmit}>
       <div className="form-group">
-        <label className="form-label">Описание мелодии</label>
+        <label className="form-label">Обондун сүрөттөмөсү</label>
         <textarea
           className="form-textarea"
           rows={4}
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Опишите желаемую мелодию на русском или кыргызском..."
+          placeholder="Каалаган обонду кыргызча же орусча сүрөттөңүз..."
           required
           disabled={loading}
         />
@@ -51,7 +51,7 @@ export default function GenerationForm({ onGenerate, loading }) {
 
       <div className="form-group">
         <label className="form-label">
-          Длительность: <strong style={{ color: 'var(--primary)' }}>{duration}с</strong>
+          Узактыгы: <strong style={{ color: 'var(--primary)' }}>{duration}с</strong>
         </label>
         <input
           type="range"
@@ -75,14 +75,14 @@ export default function GenerationForm({ onGenerate, loading }) {
           onChange={(e) => setIsPublic(e.target.checked)}
           disabled={loading}
         />
-        <span>Сделать публичным (появится в галерее)</span>
+        <span>Жалпыга жеткиликтүү кылуу (галереяда пайда болот)</span>
       </label>
 
       {loading ? (
-        <LoadingWave text="Генерируем мелодию комуза..." />
+        <LoadingWave text="Комуздун обону жаратылууда..." />
       ) : (
         <button type="submit" className="btn btn-primary btn-lg" disabled={!prompt.trim()}>
-          ✦ Создать мелодию
+          ✦ Обон түзүү
         </button>
       )}
     </form>

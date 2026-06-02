@@ -13,12 +13,12 @@ export default function Navbar() {
 
         <ul className="navbar-nav">
           <li><NavLink to="/gallery">Галерея</NavLink></li>
-          <li><NavLink to="/about">О проекте</NavLink></li>
+          <li><NavLink to="/about">Долбоор жөнүндө</NavLink></li>
           {isAuthenticated && (
             <>
-              <li><NavLink to="/generate">Создать</NavLink></li>
-              <li><NavLink to="/dashboard">Мои треки</NavLink></li>
-              <li><NavLink to="/playlists">Плейлисты</NavLink></li>
+              <li><NavLink to="/generate">Түзүү</NavLink></li>
+              <li><NavLink to="/dashboard">Менин тректерим</NavLink></li>
+              <li><NavLink to="/playlists">Плейлисттер</NavLink></li>
             </>
           )}
         </ul>
@@ -30,12 +30,12 @@ export default function Navbar() {
                 {user?.username}
               </span>
               <button className="btn btn-ghost-light btn-sm" onClick={logout}>
-                Выйти
+                Чыгуу
               </button>
             </div>
           ) : (
             <NavLink to="/" className="btn btn-primary btn-sm" state={{ openAuth: true }}>
-              Войти
+              Кирүү
             </NavLink>
           )}
         </div>
