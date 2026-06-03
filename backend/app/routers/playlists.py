@@ -7,6 +7,7 @@ from app.core.database import get_db
 from app.models.playlist import Playlist, PlaylistGeneration
 from app.models.generation import Generation
 from app.schemas.playlist import PlaylistCreate, PlaylistRead, AddToPlaylistRequest
+from app.schemas.generation import GenerationRead
 from app.services.auth import get_current_active_user
 from app.models.user import User
 
@@ -79,3 +80,27 @@ async def add_to_playlist(
             detail="Generation already in this playlist",
         )
     return {"message": "Added to playlist", "playlist_id": playlist_id}
+
+
+@router.get("/{playlist_id}/tracks", response_model=list[GenerationRead])
+async def get_playlist_tracks(
+    playlist_id: str,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user),
+):
+    result = await db.execute(
+        select(Playlist).where(
+            Playlist.id == playlist_id,
+            Playlist.user_id == current_user.id,
+        )
+    )
+    if not result.scalar_one_or_none():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Playlist not found")
+
+    tracks_result = await db.execute(
+        select(Generation)
+        .join(PlaylistGeneration, PlaylistGeneration.generation_id == Generation.id)
+        .where(PlaylistGeneration.playlist_id == playlist_id)
+        .order_by(Generation.created_at.desc())
+    )
+    return tracks_result.scalars().all()

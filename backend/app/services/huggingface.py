@@ -31,7 +31,7 @@ async def generate_music(prompt: str, duration: int) -> bytes:
         return _generate_mock_wav(duration)
 
     prompt = _translate_to_english(prompt)
-    prompt = f"{prompt}, folk music, ethnic string instrument, slow tempo, no drums, no bass"
+    prompt = f"{prompt}, folk music, plucked string instrument, komuz, no flute, no wind instrument, no brass, no piano, slow tempo, no drums, no bass"
     url = f"{settings.HF_SPACE_URL}/generate"
     logger.info("HF Spaces: POST %s  prompt=%r duration=%d", url, prompt, duration)
     try:
