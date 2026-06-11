@@ -45,3 +45,47 @@
   accent-color: var(--primary);
   cursor: pointer;
 }
+
+/* ===== Generation progress box ===== */
+.gen-progress-box {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gen-progress-step {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.gen-progress-timer {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.gen-progress-bar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.gen-progress-bar__fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--primary), var(--primary-light));
+  border-radius: 2px;
+  transition: width 1s linear;
+}
+
+.gen-progress-hint {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
