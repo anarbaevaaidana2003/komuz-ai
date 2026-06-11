@@ -17,6 +17,9 @@ function AppInner() {
   const { isAuthenticated, loadProfile, user } = useAuth()
 
   useEffect(() => {
+    // Wake up Render backend immediately on app load
+    fetch(`${import.meta.env.VITE_API_URL}/api/v1/gallery/`).catch(() => {})
+
     if (isAuthenticated && !user) {
       loadProfile()
     }
