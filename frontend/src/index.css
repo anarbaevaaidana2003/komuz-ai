@@ -1,40 +1,40 @@
-/* ===== CSS Variables — Небо Тянь-Шаня ===== */
+/* ===== CSS Variables — Флаг Кыргызстана ===== */
 :root {
   /* Фоны */
-  --bg: #F5F0E8;          /* кремовый, как войлок шырдака */
-  --bg-dark: #1A3A6B;     /* тёмно-синий, флаг Кыргызстана */
-  --bg-dark-2: #0F2A55;   /* глубокий синий */
+  --bg: #FAFAFA;           /* почти белый */
+  --bg-dark: #3D0A1A;      /* тёмный бордо (флаг КР) */
+  --bg-dark-2: #280614;    /* очень тёмный бордо */
 
-  /* Поверхности (на светлом фоне) */
+  /* Поверхности */
   --surface: #FFFFFF;
-  --surface-2: #EDE8DC;
-  --surface-3: #E3DDD0;
+  --surface-2: #F5EEED;
+  --surface-3: #EDE0E0;
 
   /* Границы */
-  --border: #D0C8BC;
-  --border-light: #BEB6AA;
+  --border: #E0D0D0;
+  --border-light: #D0C0C0;
 
-  /* Цвет primary — золото (солнце, юрта, флаг) */
-  --primary: #D4A017;
-  --primary-dark: #B88A10;
-  --primary-light: #E8C547;
+  /* Primary — алый (флаг Кыргызстана) */
+  --primary: #C8102E;
+  --primary-dark: #960C22;
+  --primary-light: #E83050;
 
-  /* Синие акценты */
-  --accent-blue: #0D5FA5;
-  --accent-blue-dark: #1A3A6B;
+  /* Золото — солнце тюндюка (вторичный акцент) */
+  --accent-blue: #D4A017;       /* переиспользован как gold */
+  --accent-blue-dark: #5D0F1A;  /* переиспользован как wine-heading */
 
-  /* Красный — только точечный акцент (флаг) */
+  /* Красный для danger */
   --accent-red: #BF3030;
 
   /* Текст на светлом фоне */
-  --text: #1A2A3A;
-  --text-muted: #4A5E78;
-  --text-dim: #8A9AAE;
+  --text: #1A0A0A;
+  --text-muted: #5A3838;
+  --text-dim: #9A7878;
 
-  /* Текст на тёмном синем фоне */
-  --text-on-dark: #F0EAE0;
-  --text-on-dark-muted: #9BB8D8;
-  --text-on-dark-dim: #5A7A9E;
+  /* Текст на тёмном фоне */
+  --text-on-dark: #F5EDE8;
+  --text-on-dark-muted: #D8B0B0;
+  --text-on-dark-dim: #9A6060;
 
   --easing: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -370,10 +370,10 @@ h3 { font-size: 1.25rem; }
   text-transform: uppercase;
 }
 
-.badge-pending   { background: #FDF3DC; color: #8A6010; border: 1px solid #E8C547; }
-.badge-processing { background: #E8F0FA; color: #0D5FA5; border: 1px solid #9BB8D8; }
-.badge-done      { background: #E8F5EC; color: #1A6B35; border: 1px solid #88C8A0; }
-.badge-error     { background: #FAEAEA; color: #BF3030; border: 1px solid #E8A8A8; }
+.badge-pending    { background: #FDF3DC; color: #8A6010; border: 1px solid #E8C547; }
+.badge-processing { background: #FDF0F0; color: #960C22; border: 1px solid #E83050; }
+.badge-done       { background: #E8F5EC; color: #1A6B35; border: 1px solid #88C8A0; }
+.badge-error      { background: #FAEAEA; color: #BF3030; border: 1px solid #E8A8A8; }
 
 /* ===== Divider ===== */
 .divider {
@@ -433,7 +433,7 @@ h3 { font-size: 1.25rem; }
   background: linear-gradient(to left, transparent, var(--border));
 }
 
-/* Геометрический шырдак-бордюр */
+/* Геометрический шырдак-бордюр — красный + золото (флаг КР) */
 .shyrdak-border {
   height: 6px;
   background: repeating-linear-gradient(
@@ -442,8 +442,8 @@ h3 { font-size: 1.25rem; }
     var(--primary) 6px,
     transparent 6px,
     transparent 10px,
-    var(--accent-blue-dark) 10px,
-    var(--accent-blue-dark) 16px,
+    var(--accent-blue) 10px,
+    var(--accent-blue) 16px,
     transparent 16px,
     transparent 20px
   );

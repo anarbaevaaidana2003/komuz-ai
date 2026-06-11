@@ -26,7 +26,7 @@
 .gen-form__example:hover {
   color: var(--accent-blue-dark);
   border-color: var(--primary);
-  background: #FDF8E8;
+  background: #FFF0F0;
 }
 
 .gen-form__public-toggle {
