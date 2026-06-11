@@ -4,18 +4,22 @@ import {
   createGeneration as apiCreate,
   deleteGeneration as apiDelete,
 } from '../api/generations'
+import { cacheGet, cacheSet, cacheClear } from '../utils/cache'
+
+const CACHE_KEY = 'cache:generations'
 
 export function useGenerations() {
-  const [generations, setGenerations] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [generations, setGenerations] = useState(() => cacheGet(CACHE_KEY) || [])
+  const [loading, setLoading] = useState(generations.length === 0)
   const [error, setError] = useState(null)
 
   const fetchGenerations = useCallback(async () => {
-    setLoading(true)
+    if (generations.length === 0) setLoading(true)
     setError(null)
     try {
       const { data } = await listGenerations()
       setGenerations(data)
+      cacheSet(CACHE_KEY, data)
     } catch (err) {
       setError(err.response?.data?.detail || 'Ошибка загрузки')
     } finally {
@@ -35,7 +39,11 @@ export function useGenerations() {
 
   async function deleteGeneration(id) {
     await apiDelete(id)
-    setGenerations((prev) => prev.filter((g) => g.id !== id))
+    setGenerations((prev) => {
+      const next = prev.filter((g) => g.id !== id)
+      cacheSet(CACHE_KEY, next)
+      return next
+    })
   }
 
   // Polling: обновляем статус pending/processing генераций

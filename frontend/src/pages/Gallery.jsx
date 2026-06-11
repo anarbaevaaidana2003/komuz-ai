@@ -3,15 +3,18 @@ import { getGallery, toggleLike } from '../api/gallery'
 import GenerationCard from '../components/GenerationCard'
 import LoadingWave from '../components/LoadingWave'
 import useAuthStore from '../store/authStore'
+import { cacheGet, cacheSet } from '../utils/cache'
+
+const CACHE_KEY = 'cache:gallery'
 
 export default function Gallery() {
-  const [generations, setGenerations] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [generations, setGenerations] = useState(() => cacheGet(CACHE_KEY) || [])
+  const [loading, setLoading] = useState(generations.length === 0)
   const { isAuthenticated } = useAuthStore()
 
   useEffect(() => {
     getGallery()
-      .then(({ data }) => setGenerations(data))
+      .then(({ data }) => { setGenerations(data); cacheSet(CACHE_KEY, data) })
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [])
