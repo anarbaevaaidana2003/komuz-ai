@@ -43,8 +43,11 @@ export function useAuth() {
     try {
       const { data } = await getMe()
       store.setUser(data)
-    } catch {
-      store.logout()
+    } catch (err) {
+      // Only logout on 401 — network errors (e.g. backend sleeping) must not clear the session
+      if (err.response?.status === 401) {
+        store.logout()
+      }
     }
   }
 
