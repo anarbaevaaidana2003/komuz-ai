@@ -47,6 +47,45 @@
   --radius-xl: 24px;
 }
 
+/* ===== Dark theme ===== */
+[data-theme="dark"] {
+  --bg: #0F1A2E;
+  --bg-dark: #080F1E;
+  --bg-dark-2: #050A15;
+
+  --surface: #162035;
+  --surface-2: #1E2D48;
+  --surface-3: #253654;
+
+  --border: #2A3D5A;
+  --border-light: #1E2E45;
+
+  --primary: #D4A017;
+  --primary-dark: #B88A10;
+  --primary-light: #E8C547;
+
+  --accent-blue: #3B8FD5;
+  --accent-blue-dark: #2870B0;
+  --accent-red: #E05050;
+
+  --text: #F0EAE0;
+  --text-muted: #9BB8D8;
+  --text-dim: #5A7A9E;
+
+  --text-on-dark: #F0EAE0;
+  --text-on-dark-muted: #9BB8D8;
+  --text-on-dark-dim: #5A7A9E;
+}
+
+[data-theme="dark"] .badge-pending    { background: #2A2010; color: #E8C547; border-color: #8A6010; }
+[data-theme="dark"] .badge-processing { background: #0D1E35; color: #9BB8D8; border-color: #2A5080; }
+[data-theme="dark"] .badge-done       { background: #0D2A18; color: #6FC889; border-color: #2A6B40; }
+[data-theme="dark"] .badge-error      { background: #2A0D0D; color: #E05050; border-color: #6B2A2A; }
+
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 4px 20px rgba(212, 160, 23, 0.08);
+}
+
 /* ===== Reset ===== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -173,6 +212,13 @@ h3 { font-size: 1.25rem; }
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* Кнопка переключения темы */
+.navbar-theme-btn {
+  font-size: 1rem;
+  padding: 6px 10px;
+  border-radius: var(--radius);
 }
 
 /* Имя пользователя в navbar */

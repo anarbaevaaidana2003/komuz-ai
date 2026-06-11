@@ -97,6 +97,16 @@ export default function AudioPlayer() {
           {formatTime(currentTime)} / {formatTime(duration)}
         </span>
 
+        <a
+          className="audio-player__btn"
+          href={currentTrack.audio_url}
+          download={`komuz-${currentTrack.id.slice(0, 8)}.wav`}
+          aria-label="Жүктөп алуу"
+          title="Жүктөп алуу"
+        >
+          ↓
+        </a>
+
         <button className="audio-player__btn" onClick={stop} aria-label="Стоп">
           ✕
         </button>

@@ -94,6 +94,17 @@ export default function GenerationCard({ generation, onDelete, showDelete = fals
           </div>
         )}
 
+        {canPlay && (
+          <a
+            className="btn btn-sm btn-outline"
+            href={generation.audio_url}
+            download={`komuz-${generation.id.slice(0, 8)}.wav`}
+            aria-label="Жүктөп алуу"
+          >
+            ↓ Жүктөп алуу
+          </a>
+        )}
+
         {showDelete && (
           <button className="btn btn-sm btn-danger" onClick={() => onDelete?.(generation.id)}>
             Өчүрүү

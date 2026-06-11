@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import useAuthStore from '../store/authStore'
+import useThemeStore from '../store/themeStore'
 
 export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuthStore()
+  const { theme, toggle } = useThemeStore()
 
   return (
     <nav className="navbar">
@@ -24,6 +26,15 @@ export default function Navbar() {
         </ul>
 
         <div className="navbar-actions">
+          <button
+            className="btn btn-ghost-light btn-sm navbar-theme-btn"
+            onClick={toggle}
+            aria-label="Тема которые"
+            title={theme === 'light' ? 'Күңүрт темага өтүү' : 'Жарык темага өтүү'}
+          >
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
+
           {isAuthenticated ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <span className="navbar-username">
