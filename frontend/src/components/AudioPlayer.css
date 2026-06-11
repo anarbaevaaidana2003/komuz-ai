@@ -11,7 +11,7 @@
   align-items: center;
   gap: 20px;
   animation: slide-up-player 0.3s var(--easing);
-  box-shadow: 0 -4px 24px rgba(61, 10, 26, 0.4);
+  box-shadow: 0 -4px 24px rgba(26, 58, 107, 0.4);
 }
 
 @keyframes slide-up-player {
@@ -90,7 +90,7 @@
 
 .audio-player__btn {
   background: transparent;
-  border: 1px solid rgba(200, 16, 46, 0.2);
+  border: 1px solid rgba(155, 184, 216, 0.3);
   color: var(--text-on-dark-muted);
   width: 36px;
   height: 36px;
@@ -117,7 +117,7 @@
 .audio-player__progress {
   flex: 1;
   height: 4px;
-  background: rgba(200, 16, 46, 0.12);
+  background: rgba(155, 184, 216, 0.2);
   border-radius: 2px;
   cursor: pointer;
   position: relative;

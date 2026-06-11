@@ -19,7 +19,7 @@
   inset: 0;
   background:
     radial-gradient(ellipse at 75% 40%, rgba(212, 160, 23, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 15% 80%, rgba(200, 16, 46, 0.15) 0%, transparent 45%);
+    radial-gradient(ellipse at 15% 80%, rgba(13, 95, 165, 0.2) 0%, transparent 45%);
   pointer-events: none;
 }
 
