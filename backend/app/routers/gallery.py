@@ -1,5 +1,6 @@
 import logging
-from fastapi import APIRouter, Depends, HTTPException, status
+import uuid
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from app.core.database import get_db
@@ -7,6 +8,7 @@ from app.models.generation import Generation
 from app.models.like import Like
 from app.schemas.generation import GenerationRead
 from app.services.auth import get_current_active_user
+from app.services.cloudinary import upload_audio
 from app.models.user import User
 
 logger = logging.getLogger(__name__)
@@ -60,3 +62,41 @@ async def toggle_like(
     gen.likes_count += 1
     await db.commit()
     return {"liked": True, "likes_count": gen.likes_count}
+
+
+@router.post("/upload", response_model=GenerationRead)
+async def upload_to_gallery(
+    file: UploadFile = File(...),
+    prompt: str = Form(...),
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_active_user),
+):
+    """Загрузить готовый аудиофайл напрямую в публичную галерею."""
+    if file.content_type not in ("audio/wav", "audio/wave", "audio/mpeg", "audio/mp3", "application/octet-stream"):
+        raise HTTPException(status_code=400, detail="Только WAV или MP3 файлы")
+
+    audio_bytes = await file.read()
+    if len(audio_bytes) > 50 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="Файл слишком большой (макс 50 МБ)")
+
+    gen_id = str(uuid.uuid4())
+    try:
+        audio_url = await upload_audio(audio_bytes, gen_id)
+    except Exception as e:
+        logger.error("Upload failed: %s", e)
+        raise HTTPException(status_code=500, detail="Ошибка загрузки файла")
+
+    gen = Generation(
+        id=gen_id,
+        user_id=current_user.id,
+        prompt=prompt,
+        duration=0,
+        audio_url=audio_url,
+        status="done",
+        is_public=True,
+        likes_count=0,
+    )
+    db.add(gen)
+    await db.commit()
+    await db.refresh(gen)
+    return gen
